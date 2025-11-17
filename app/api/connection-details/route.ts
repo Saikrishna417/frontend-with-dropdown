@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
 import { AccessToken, type AccessTokenOptions, type VideoGrant } from 'livekit-server-sdk';
 
-const API_KEY = process.env.LIVEKIT_API_KEY!;
-const API_SECRET = process.env.LIVEKIT_API_SECRET!;
-const LIVEKIT_URL = process.env.LIVEKIT_URL!;
+const API_KEY = process.env.LIVEKIT_API_KEY! || process.env.NEXT_PUBLIC_LIVEKIT_API_KEY!;
+const API_SECRET = process.env.LIVEKIT_API_SECRET! || process.env.NEXT_PUBLIC_LIVEKIT_API_SECRET!;
+const LIVEKIT_URL = process.env.LIVEKIT_URL! || process.env.NEXT_PUBLIC_LIVEKIT_URL!;
 
 export const revalidate = 0;
 

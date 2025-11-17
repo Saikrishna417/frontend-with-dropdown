@@ -1,0 +1,25 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - corepack enable || true
+        - corepack prepare pnpm@latest --activate || npm i -g pnpm@latest
+        - pnpm install
+    build:
+      commands:
+        - pnpm build   # runs `next build`
+    postBuild:
+      commands:
+        - echo "Listing build output for debugging"
+        - ls -la .next || true
+        - ls -la .next/static || true
+  artifacts:
+    # For SSR Next apps Amplify expects .next as the base directory
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - ~/.pnpm-store
