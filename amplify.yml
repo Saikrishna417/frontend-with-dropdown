@@ -5,13 +5,14 @@ frontend:
       commands:
         - corepack enable || true
         - corepack prepare pnpm@latest --activate || npm i -g pnpm@latest
+        - export PNPM_STORE_DIR="./.pnpm-store" # Explicitly set a local store path
         - pnpm install
     build:
       commands:
         - echo "Using LIVEKIT_URL=$LIVEKIT_URL"
         - echo "Using LIVEKIT_API_KEY=$LIVEKIT_API_KEY"
         - echo "Using LIVEKIT_API_SECRET=$LIVEKIT_API_SECRET"
-        - pnpm build   # runs `next build`
+        - pnpm build # runs `next build`
     postBuild:
       commands:
         - echo "Listing build output for debugging"
@@ -25,4 +26,4 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      - ~/.pnpm-store
+      - ./.pnpm-store/**/* # Cache the local store directory
