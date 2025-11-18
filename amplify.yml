@@ -8,6 +8,9 @@ frontend:
         - pnpm install
     build:
       commands:
+        - echo "Using LIVEKIT_URL=$LIVEKIT_URL"
+        - echo "Using LIVEKIT_API_KEY=$LIVEKIT_API_KEY"
+        - echo "Using LIVEKIT_API_SECRET=$LIVEKIT_API_SECRET"
         - pnpm build   # runs `next build`
     postBuild:
       commands:
